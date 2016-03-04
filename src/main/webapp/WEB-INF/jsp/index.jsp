@@ -8,9 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <security:csrfMetaTags/>
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
     <!-- Bootstrap Core CSS -->
-    <link href="<%=request.getContextPath()%>/frame/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/frame/bower_components/bootstrap/dist/css/bootstrap.min.css"
+          rel="stylesheet">
     <!-- MetisMenu CSS -->
     <link href="<%=request.getContextPath()%>/frame/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
     <!-- Timeline CSS -->
@@ -20,7 +22,8 @@
     <!-- Morris Charts CSS -->
     <link href="<%=request.getContextPath()%>/frame/bower_components/morrisjs/morris.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="<%=request.getContextPath()%>/frame/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<%=request.getContextPath()%>/frame/bower_components/font-awesome/css/font-awesome.min.css"
+          rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -43,7 +46,7 @@
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -56,7 +59,7 @@
                             <security:csrfInput/>
                             <a href="javascript:void(0)" onclick="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             <script>
-                                function logout(){
+                                function logout() {
                                     $("#logoutForm").submit();
                                 }
                             </script>
@@ -110,6 +113,7 @@
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
                             <div class="clearfix"></div>
                         </div>
                     </a>
@@ -132,6 +136,7 @@
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
                             <div class="clearfix"></div>
                         </div>
                     </a>
@@ -154,6 +159,7 @@
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
                             <div class="clearfix"></div>
                         </div>
                     </a>
@@ -176,6 +182,7 @@
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
                             <div class="clearfix"></div>
                         </div>
                     </a>

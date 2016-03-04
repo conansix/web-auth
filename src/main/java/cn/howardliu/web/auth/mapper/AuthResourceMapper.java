@@ -1,5 +1,7 @@
 package cn.howardliu.web.auth.mapper;
 
+import cn.howardliu.web.auth.pojo.AuthResourcePojo;
+
 import java.util.List;
 
 /**
@@ -10,4 +12,6 @@ import java.util.List;
  */
 public interface AuthResourceMapper {
     List<String> loadResourcesByAuthority(String authority);
+
+    List<AuthResourcePojo> listResourcesByAuthorityId(String authorityId);
 }

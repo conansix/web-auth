@@ -1,5 +1,8 @@
 package cn.howardliu.web.auth.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <br/>create at 16-2-25
  *
@@ -11,6 +14,7 @@ public class AuthGroupPojo {
     private String groupName;
     private String groupDesc;
     private String enabled;
+    private List<AuthAuthorityPojo> authorities = new ArrayList<>();
 
     public Long getGroupId() {
         return groupId;
@@ -42,5 +46,24 @@ public class AuthGroupPojo {
 
     public void setEnabled(String enabled) {
         this.enabled = enabled;
+    }
+
+    public List<AuthAuthorityPojo> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(List<AuthAuthorityPojo> authorities) {
+        this.authorities = authorities;
+    }
+
+    @Override
+    public String toString() {
+        return "AuthGroupPojo{" +
+                "groupId=" + groupId +
+                ", groupName='" + groupName + '\'' +
+                ", groupDesc='" + groupDesc + '\'' +
+                ", enabled='" + enabled + '\'' +
+                ", authorities=" + authorities +
+                '}';
     }
 }

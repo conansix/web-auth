@@ -10,4 +10,6 @@ import cn.howardliu.web.auth.pojo.AuthUserPojo;
  */
 public interface AuthUserMapper {
     AuthUserPojo loadUserByUsername(String username);
+
+    AuthUserPojo getUserById(String userId);
 }

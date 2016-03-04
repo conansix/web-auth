@@ -5,6 +5,7 @@ import cn.howardliu.web.auth.mapper.AuthResourceMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
@@ -46,7 +47,10 @@ public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocat
                     caList = Arrays.asList(ca);
                     resourceMap.put(resource, caList);
                 } else {
-                    caList.stream().filter(a -> !a.equals(ca)).forEach(caList::add);
+                    List<ConfigAttribute> list = new ArrayList<>();
+                    list.addAll(caList);
+                    caList.stream().filter(a -> !a.equals(ca)).forEach(list::add);
+                    resourceMap.put(resource, list);
                 }
             }
         }
@@ -65,7 +69,7 @@ public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocat
                 return resourceMap.get(resURL);
             }
         }
-        return null;
+        throw new AccessDeniedException("you don't allow to get content");
     }
 
     @Override

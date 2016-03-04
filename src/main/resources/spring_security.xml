@@ -37,8 +37,7 @@
                 class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl"
                 p:dataSource-ref="dataSource"/>
 
-    <http auto-config="true" use-expressions="true" authentication-manager-ref="authenticationManager"
-          entry-point-ref="authenticationEntryPoint">
+    <http authentication-manager-ref="authenticationManager" entry-point-ref="authenticationEntryPoint">
         <form-login authentication-failure-url="/login.html?error"
                     default-target-url="/index.html"
                     login-page="/login.html"

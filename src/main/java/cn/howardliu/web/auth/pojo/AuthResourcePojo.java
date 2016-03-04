@@ -70,4 +70,17 @@ public class AuthResourcePojo {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
+
+    @Override
+    public String toString() {
+        return "AuthResourcePojo{" +
+                "resourceId=" + resourceId +
+                ", resourceName='" + resourceName + '\'' +
+                ", resourceDesc='" + resourceDesc + '\'' +
+                ", resourceType='" + resourceType + '\'' +
+                ", resource='" + resource + '\'' +
+                ", priority=" + priority +
+                ", enabled=" + enabled +
+                '}';
+    }
 }

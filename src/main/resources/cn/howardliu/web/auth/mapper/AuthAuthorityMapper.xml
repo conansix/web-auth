@@ -18,4 +18,22 @@
     <select id="loadAllAuthorities" resultType="java.lang.String">
         SELECT authority FROM auth_authority WHERE enabled = TRUE
     </select>
+    <resultMap id="authority" type="cn.howardliu.web.auth.pojo.AuthAuthorityPojo">
+        <id property="authorityId" column="authority_id"/>
+        <result property="authority" column="authority"/>
+        <result property="authorityDesc" column="authority_desc"/>
+        <result property="enabled" column="enabled"/>
+        <collection property="resources" column="authority_id"
+                    ofType="cn.howardliu.web.auth.pojo.AuthResourcePojo"
+                    select="cn.howardliu.web.auth.mapper.AuthResourceMapper.listResourcesByAuthorityId"/>
+    </resultMap>
+    <select id="listAuthoritiesByGroupId" resultMap="authority">
+        SELECT
+          a.authority_id authority_id,
+          authority,
+          authority_desc,
+          enabled
+        FROM auth_authority a LEFT JOIN auth_group_authority ga ON a.authority_id = ga.authority_id
+        WHERE ga.group_id = #{groupId}
+    </select>
 </mapper>

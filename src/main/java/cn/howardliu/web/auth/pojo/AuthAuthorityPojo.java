@@ -1,5 +1,8 @@
 package cn.howardliu.web.auth.pojo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * <br/>create at 16-2-25
  *
@@ -11,6 +14,7 @@ public class AuthAuthorityPojo {
     private String authority;
     private String authorityDesc;
     private Boolean enabled;
+    private List<AuthResourcePojo> resources = new ArrayList<>();
 
     public Long getAuthorityId() {
         return authorityId;
@@ -42,5 +46,24 @@ public class AuthAuthorityPojo {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public List<AuthResourcePojo> getResources() {
+        return resources;
+    }
+
+    public void setResources(List<AuthResourcePojo> resources) {
+        this.resources = resources;
+    }
+
+    @Override
+    public String toString() {
+        return "AuthAuthorityPojo{" +
+                "authorityId=" + authorityId +
+                ", authority='" + authority + '\'' +
+                ", authorityDesc='" + authorityDesc + '\'' +
+                ", enabled=" + enabled +
+                ", resources=" + resources +
+                '}';
     }
 }

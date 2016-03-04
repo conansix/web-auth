@@ -3,9 +3,7 @@ package cn.howardliu.web.auth.pojo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * <br/>create at 16-2-25
@@ -18,6 +16,7 @@ public class AuthUserPojo implements UserDetails {
     private String username;
     private String password;
     private boolean enabled;
+    private List<AuthGroupPojo> groups = new ArrayList<>();
     private final Set<GrantedAuthority> authorities = Collections.synchronizedSet(new HashSet<>());
 
     public Long getUserId() {
@@ -46,6 +45,14 @@ public class AuthUserPojo implements UserDetails {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public List<AuthGroupPojo> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<AuthGroupPojo> groups) {
+        this.groups = groups;
     }
 
     public Set<GrantedAuthority> getAuthorities() {
@@ -80,5 +87,17 @@ public class AuthUserPojo implements UserDetails {
     @Override
     public int hashCode() {
         return username.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "AuthUserPojo{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                ", groups=" + groups +
+                ", authorities=" + authorities +
+                '}';
     }
 }

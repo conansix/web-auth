@@ -11,4 +11,22 @@
           FROM auth_group g LEFT JOIN auth_user_group ug ON g.group_id = ug.group_id
          WHERE ug.user_id = #{userId}
     </select>
+    <resultMap id="group" type="cn.howardliu.web.auth.pojo.AuthGroupPojo">
+        <id property="groupId" column="group_id"/>
+        <result property="groupName" column="group_name"/>
+        <result property="groupDesc" column="group_desc"/>
+        <result property="enabled" column="enabled"/>
+        <collection property="authorities" column="group_id"
+                    ofType="cn.howardliu.web.auth.pojo.AuthAuthorityPojo"
+                    select="cn.howardliu.web.auth.mapper.AuthAuthorityMapper.listAuthoritiesByGroupId"/>
+    </resultMap>
+    <select id="listGroupsByUserId" resultMap="group">
+        SELECT
+          g.group_id group_id,
+          group_name,
+          group_desc,
+          enabled
+        FROM auth_group g LEFT JOIN auth_user_group ug ON g.group_id = ug.group_id
+        WHERE ug.user_id = #{userId}
+    </select>
 </mapper>

@@ -10,4 +10,20 @@
     <select id="loadUserByUsername" resultMap="authUserPojo">
         SELECT * FROM auth_user WHERE username=#{username}
     </select>
+    <resultMap id="userInfo" type="cn.howardliu.web.auth.pojo.AuthUserPojo">
+        <id property="userId" column="user_id"/>
+        <result property="username" column="username"/>
+        <result property="enabled" column="enabled"/>
+        <collection property="groups" column="user_id"
+                    ofType="cn.howardliu.web.auth.pojo.AuthGroupPojo"
+                    select="cn.howardliu.web.auth.mapper.AuthGroupMapper.listGroupsByUserId"/>
+    </resultMap>
+    <select id="getUserById" resultMap="userInfo">
+        SELECT
+          user_id,
+          username,
+          enabled
+        FROM auth_user
+        WHERE user_id = #{userId}
+    </select>
 </mapper>

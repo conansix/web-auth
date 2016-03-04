@@ -13,4 +13,6 @@ import java.util.List;
  */
 public interface AuthGroupMapper {
     List<AuthGroupPojo> loadUserGroups(AuthUserPojo user);
+
+    List<AuthGroupPojo> listGroupsByUserId(String userId);
 }

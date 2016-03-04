@@ -34,6 +34,7 @@
         <dependency.standard.version>1.1.2</dependency.standard.version>
         <dependency.jstl.version>1.2</dependency.jstl.version>
         <dependency.HikariCP.version>2.4.3</dependency.HikariCP.version>
+        <dependency.fastjson.version>1.2.7</dependency.fastjson.version>
     </properties>
     <dependencies>
         <dependency>
@@ -141,6 +142,11 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${dependency.jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${dependency.fastjson.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>

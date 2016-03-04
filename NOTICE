@@ -1,2 +1,4 @@
 本项目中使用的前端框架Start Bootstrap Admin 2使用的是MIT协议。
 The framework of front-end in this project is Start Bootstrap Admin 2 used MIT license.
+
+前端部分功能使用D3.js，版本号3.5.16，具体协议见 web-auth/src/main/webapp/js/d3/LICENSE。

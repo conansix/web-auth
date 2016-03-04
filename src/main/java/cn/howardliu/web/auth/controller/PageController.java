@@ -20,4 +20,9 @@ public class PageController {
     public String index() {
         return "index";
     }
+
+    @RequestMapping("userAuthorities")
+    public String userAuthorities() {
+        return "userAuthorities";
+    }
 }

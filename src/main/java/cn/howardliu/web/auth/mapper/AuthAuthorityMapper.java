@@ -15,4 +15,6 @@ public interface AuthAuthorityMapper {
     List<AuthAuthorityPojo> loadAuthorityOfGroups(List<AuthGroupPojo> groups);
 
     List<String> loadAllAuthorities();
+
+    List<AuthAuthorityPojo> listAuthoritiesByGroupId(String groupId);
 }
