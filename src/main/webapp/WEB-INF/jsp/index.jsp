@@ -1,4 +1,3 @@
-<%--suppress ELValidationInJSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
@@ -11,17 +10,17 @@
     <meta name="author" content="">
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
     <!-- Bootstrap Core CSS -->
-    <link href="${request.contextPath}/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
-    <link href="${request.contextPath}/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
     <!-- Timeline CSS -->
-    <link href="${request.contextPath}/dist/css/timeline.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/dist/css/timeline.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="${request.contextPath}/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/dist/css/sb-admin-2.css" rel="stylesheet">
     <!-- Morris Charts CSS -->
-    <link href="${request.contextPath}/bower_components/morrisjs/morris.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/bower_components/morrisjs/morris.css" rel="stylesheet">
     <!-- Custom Fonts -->
-    <link href="${request.contextPath}/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<%=request.getContextPath()%>/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -53,7 +52,7 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <form id="logoutForm" action="${request.contextPath}/logout.html" method="post">
+                        <form id="logoutForm" action="<%=request.getContextPath()%>/logout.html" method="post">
                             <security:csrfInput/>
                             <a href="javascript:void(0)" onclick="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             <script>
@@ -186,16 +185,16 @@
     </div>
 </div>
 <!-- jQuery -->
-<script src="${request.contextPath}/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
-<script src="${request.contextPath}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
-<script src="${request.contextPath}/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+<script src="<%=request.getContextPath()%>/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 <!-- Morris Charts JavaScript -->
-<script src="${request.contextPath}/bower_components/raphael/raphael-min.js"></script>
-<script src="${request.contextPath}/bower_components/morrisjs/morris.min.js"></script>
-<script src="${request.contextPath}/js/morris-data.js"></script>
+<script src="<%=request.getContextPath()%>/bower_components/raphael/raphael-min.js"></script>
+<script src="<%=request.getContextPath()%>/bower_components/morrisjs/morris.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/morris-data.js"></script>
 <!-- Custom Theme JavaScript -->
-<script src="${request.contextPath}/dist/js/sb-admin-2.js"></script>
+<script src="<%=request.getContextPath()%>/dist/js/sb-admin-2.js"></script>
 </body>
 </html>
