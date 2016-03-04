@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.howardliu.web.auth.mapper.AuthResourceMapper">
+    <select id="loadResourcesByAuthority" resultType="java.lang.String">
+        SELECT resource
+        FROM auth_resource r, auth_authority_resource ar, auth_authority a
+        WHERE r.resource_id = ar.resource_id
+              AND a.authority_id = ar.authority_id
+              AND a.authority = #{authority}
+    </select>
+</mapper>

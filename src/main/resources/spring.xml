@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-4.1.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+    <context:property-placeholder file-encoding="UTF-8" location="classpath*:dataSource.properties"/>
+
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close" init-method="getConnection">
+        <constructor-arg name="configuration">
+            <bean class="com.zaxxer.hikari.HikariConfig"
+                  p:driverClassName="${dataSource.className}"
+                  p:jdbcUrl="${dataSource.jdbcUrl}"
+                  p:username="${dataSource.username}"
+                  p:password="${dataSource.password}"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:configLocation="classpath:mybatis-config.xml"
+          p:dataSource-ref="dataSource"/>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+          p:basePackage="cn.howardliu.web.auth.mapper"
+          p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSource"/>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <context:component-scan base-package="cn.howardliu.web.auth">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+</beans>
