@@ -14,7 +14,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -52,6 +56,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                     userFound.getAuthorities().add(new SimpleGrantedAuthority(authority.getAuthority()));
                 }
             }
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+                    .getRequest();
+            HttpSession session = request.getSession();
+            session.setAttribute("userInfo", userFound);
             return userFound;
         }
     }

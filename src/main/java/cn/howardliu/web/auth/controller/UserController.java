@@ -9,10 +9,12 @@ import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -32,10 +34,14 @@ public class UserController {
 
     @RequestMapping("/authTree")
     @ResponseBody
-    public JSONObject getUserAuthTree() {
+    public JSONObject getUserAuthTree(HttpSession session) {
         JSONObject json = new JSONObject();
         try {
-            json = userInfo2D3SwitchJson(authUserService.getUserInfo("1"));
+            AuthUserPojo userFound = (AuthUserPojo) session.getAttribute("userInfo");
+            if (userFound == null) {
+                throw new AccessDeniedException("you have to login");
+            }
+            json = userInfo2D3SwitchJson(authUserService.getUserInfo(userFound.getUserId() + ""));
         } catch (Exception e) {
             logger.error("读取用户权限树失败", e);
         }
