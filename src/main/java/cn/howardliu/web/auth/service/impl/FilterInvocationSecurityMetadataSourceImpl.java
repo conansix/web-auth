@@ -15,6 +15,7 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 最核心的地方，就是提供某个资源对应的权限定义，即getAttributes方法返回的结果。 此类在初始化时，应该取到所有资源及其对应角色的定义。
@@ -27,7 +28,7 @@ import java.util.*;
 public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocationSecurityMetadataSource {
     private static final Logger logger = LoggerFactory.getLogger(FilterInvocationSecurityMetadataSourceImpl.class);
     private static final PathMatcher pathMatcher = new AntPathMatcher();
-    private static final Map<String, Collection<ConfigAttribute>> resourceMap = new HashMap<>();
+    private static final Map<String, Collection<ConfigAttribute>> resourceMap = new ConcurrentHashMap<>();
     @Autowired
     private AuthAuthorityMapper authorityMapper;
     @Autowired
