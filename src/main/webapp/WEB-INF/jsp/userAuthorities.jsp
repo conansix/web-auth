@@ -128,7 +128,7 @@
 <script src="<%=request.getContextPath()%>/frame/dist/js/sb-admin-2.js"></script>
 <script src="<%=request.getContextPath()%>/js/d3/d3.min.js"></script>
 <script>
-    var width = 600;
+    var width = 700;
     var height = 500;
 
     //边界空白
