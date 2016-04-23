@@ -5,7 +5,6 @@ import cn.howardliu.web.auth.mapper.AuthResourceMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.web.FilterInvocation;
@@ -45,13 +44,11 @@ public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocat
                 // 判断资源文件和权限的对应关系，如果已经存在相关的资源url，则要通过该url为key提取出权限集合，将权限增加到权限集合中
                 Collection<ConfigAttribute> caList = resourceMap.get(resource);
                 if (caList == null) {
-                    caList = Arrays.asList(ca);
+                    caList = Collections.synchronizedSet(new HashSet<>());
+                    caList.add(ca);
                     resourceMap.put(resource, caList);
                 } else {
-                    List<ConfigAttribute> list = new ArrayList<>();
-                    list.addAll(caList);
-                    caList.stream().filter(a -> !a.equals(ca)).forEach(list::add);
-                    resourceMap.put(resource, list);
+                    caList.add(ca);
                 }
             }
         }
@@ -70,7 +67,8 @@ public class FilterInvocationSecurityMetadataSourceImpl implements FilterInvocat
                 return resourceMap.get(resURL);
             }
         }
-        throw new AccessDeniedException("you don't allow to get content");
+        //throw new AccessDeniedException("you don't allow to get content");
+        return null;
     }
 
     @Override
