@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <security:csrfMetaTags/>
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>web-auth index page</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/frame/bower_components/bootstrap/dist/css/bootstrap.min.css"
           rel="stylesheet">

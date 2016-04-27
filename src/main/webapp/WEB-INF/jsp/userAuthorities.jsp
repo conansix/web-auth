@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <security:csrfMetaTags/>
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>web-auth user's authorities</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/frame/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- MetisMenu CSS -->
@@ -52,7 +52,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Dashboard</h1>
+                <h1 class="page-header">用户权限树</h1>
             </div>
         </div>
         <div class="row">
