@@ -7,11 +7,12 @@
                                  http://www.springframework.org/schema/security/spring-security-3.2.xsd
                                  http://www.springframework.org/schema/beans
                                  http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+    <beans:bean id="daoAuthenticationProvider"
+                class="cn.howardliu.web.auth.security.UacAuthenticationProvider"
+            p:userDetailsService-ref="userDetailsService"/>
+
     <authentication-manager alias="authenticationManager">
-        <authentication-provider user-service-ref="userDetailsService">
-            <password-encoder hash="md5">
-                <salt-source user-property="username"/>
-            </password-encoder>
+        <authentication-provider ref="daoAuthenticationProvider">
         </authentication-provider>
     </authentication-manager>
 

@@ -1,21 +1,14 @@
 package cn.howardliu.web.auth.service.impl;
 
-import cn.howardliu.web.auth.mapper.AuthAuthorityMapper;
-import cn.howardliu.web.auth.mapper.AuthGroupMapper;
-import cn.howardliu.web.auth.mapper.AuthUserMapper;
-import cn.howardliu.web.auth.pojo.AuthAuthorityPojo;
-import cn.howardliu.web.auth.pojo.AuthGroupPojo;
 import cn.howardliu.web.auth.pojo.AuthUserPojo;
+import cn.howardliu.web.auth.service.UacService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * 扩展Spring Security中关于用户权限的控制
@@ -28,32 +21,16 @@ import java.util.List;
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final Log logger = LogFactory.getLog(this.getClass());
     @Autowired
-    private AuthUserMapper userMapper;
-    @Autowired
-    private AuthGroupMapper groupMapper;
-    @Autowired
-    private AuthAuthorityMapper authorityMapper;
+    private UacService uacService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AuthUserPojo userFound = userMapper.loadUserByUsername(username);
+        AuthUserPojo userFound = uacService.getUserInfo(username);
         if (userFound == null) {
             logger.debug("Query returned no results for user '" + username + "'");
             throw new UsernameNotFoundException("Username " + username + " not found");
-        } else {
-            List<AuthGroupPojo> groups = this.groupMapper.loadUserGroups(userFound);
-            if (groups.size() > 0) {
-                for (AuthGroupPojo group : groups) {
-                    if(group.getGroupName().startsWith("ROLE_")) {
-                        userFound.getAuthorities().add(new SimpleGrantedAuthority(group.getGroupName()));
-                    }
-                }
-                List<AuthAuthorityPojo> authorities = this.authorityMapper.loadAuthorityOfGroups(groups);
-                for (AuthAuthorityPojo authority : authorities) {
-                    userFound.getAuthorities().add(new SimpleGrantedAuthority(authority.getAuthority()));
-                }
-            }
-            return userFound;
         }
+        userFound.getAuthorities().addAll(uacService.listAuthority(username));
+        return userFound;
     }
 }
