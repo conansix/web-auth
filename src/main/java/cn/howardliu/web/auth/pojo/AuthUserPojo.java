@@ -18,7 +18,7 @@ public class AuthUserPojo implements UserDetails {
     private String username;
     private String password;
     private boolean enabled;
-    private final Set<GrantedAuthority> authorities = Collections.synchronizedSet(new HashSet<>());
+    private final Set<GrantedAuthority> authorities = Collections.synchronizedSet(new HashSet<GrantedAuthority>());
 
     public Long getUserId() {
         return userId;

@@ -43,10 +43,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         } else {
             List<AuthGroupPojo> groups = this.groupMapper.loadUserGroups(userFound);
             if (groups.size() > 0) {
-                groups.stream()
-                        .filter(group -> group.getGroupName().startsWith("ROLE_"))
-                        .forEach(group -> userFound.getAuthorities()
-                                .add(new SimpleGrantedAuthority(group.getGroupName())));
+                for (AuthGroupPojo group : groups) {
+                    if(group.getGroupName().startsWith("ROLE_")) {
+                        userFound.getAuthorities().add(new SimpleGrantedAuthority(group.getGroupName()));
+                    }
+                }
                 List<AuthAuthorityPojo> authorities = this.authorityMapper.loadAuthorityOfGroups(groups);
                 for (AuthAuthorityPojo authority : authorities) {
                     userFound.getAuthorities().add(new SimpleGrantedAuthority(authority.getAuthority()));

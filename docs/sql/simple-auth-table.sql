@@ -30,19 +30,6 @@ CREATE TABLE auth_authority (
   UNIQUE KEY uk_authority (authority)
 ) COMMENT '权限表' DEFAULT CHARSET utf8 ENGINE InnoDB;
 
-DROP TABLE IF EXISTS auth_resource;
-CREATE TABLE auth_resource (
-  resource_id   BIGINT AUTO_INCREMENT,
-  resource_name VARCHAR(100) COMMENT '资源名',
-  resource_desc VARCHAR(100) COMMENT '资源描述',
-  resource_type VARCHAR(40) COMMENT '资源类型',
-  resource      VARCHAR(200) COMMENT '资源地址',
-  priority      INT COMMENT '优先次序',
-  enabled       BOOLEAN COMMENT '是否有效',
-  PRIMARY KEY pk_resource_id (resource_id),
-  UNIQUE KEY uk_resource (resource)
-) COMMENT '资源表' DEFAULT CHARSET utf8 ENGINE InnoDB;
-
 DROP TABLE IF EXISTS auth_user_group;
 CREATE TABLE auth_user_group (
   id       BIGINT AUTO_INCREMENT,
@@ -52,15 +39,6 @@ CREATE TABLE auth_user_group (
   FOREIGN KEY fk_user_id_4_group(user_id) REFERENCES auth_user (user_id),
   FOREIGN KEY fk_group_id_4_user(group_id) REFERENCES auth_group (group_id)
 ) COMMENT '用户角色表' DEFAULT CHARSET utf8 ENGINE InnoDB;
-
-DROP TABLE IF EXISTS auth_authority_resource;
-CREATE TABLE auth_authority_resource (
-  id           BIGINT PRIMARY KEY AUTO_INCREMENT,
-  authority_id BIGINT NOT NULL COMMENT '权限编号',
-  resource_id  BIGINT NOT NULL COMMENT '资源编号',
-  FOREIGN KEY fk_authority_id_4_resource(authority_id) REFERENCES auth_authority (authority_id),
-  FOREIGN KEY fk_resource_id_4_authority(resource_id) REFERENCES auth_resource (resource_id)
-) COMMENT '权限资源表' DEFAULT CHARSET utf8 ENGINE InnoDB;
 
 DROP TABLE IF EXISTS auth_group_authority;
 CREATE TABLE auth_group_authority (

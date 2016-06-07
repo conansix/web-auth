@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <security:csrfMetaTags/>
     <title>web-auth login page</title>
     <!-- Bootstrap Core CSS -->
     <link href="<%=request.getContextPath()%>/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +48,6 @@
                                     <input name="remember-me" type="checkbox" value="true">Remember Me
                                 </label>
                             </div>
-                            <security:csrfInput/>
                             <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
                         </fieldset>
                     </form>

@@ -53,7 +53,6 @@
                     <li class="divider"></li>
                     <li>
                         <form id="logoutForm" action="<%=request.getContextPath()%>/logout.html" method="post">
-                            <security:csrfInput/>
                             <a href="javascript:void(0)" onclick="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             <script>
                                 function logout(){
