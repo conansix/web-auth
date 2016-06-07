@@ -32,7 +32,8 @@ public class UacAuthenticationProvider extends DaoAuthenticationProvider {
         }
 
         try {
-            if (!uacService.isValidate(userDetails.getUsername(), userDetails.getPassword())) {
+            String presentedPassword = authentication.getCredentials().toString();
+            if (!uacService.isValidate(userDetails.getUsername(), presentedPassword)) {
                 logger.debug("Authentication failed: password does not match stored value");
                 throw badCredentialsException;
             }
