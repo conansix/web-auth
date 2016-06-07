@@ -41,6 +41,7 @@
             <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
         </div>
         <ul class="nav navbar-top-links navbar-right">
+            <li>${username}</li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>

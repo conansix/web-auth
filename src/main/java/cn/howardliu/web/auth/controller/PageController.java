@@ -1,6 +1,9 @@
 package cn.howardliu.web.auth.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -17,7 +20,11 @@ public class PageController {
     }
 
     @RequestMapping("index")
-    public String index() {
+    public String index(Model model) {
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
+        model.addAttribute("username", userDetails.getUsername());
         return "index";
     }
 }
